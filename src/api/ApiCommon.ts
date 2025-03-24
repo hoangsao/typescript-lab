@@ -1,8 +1,33 @@
 import { ApiResponse } from './ApiResponse'
 
+const defaultRequestConfig: RequestInit = {
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+}
+
+const mergeRequestConfig = (defaultConfig: RequestInit, customConfig?: RequestInit): RequestInit => {
+  if (!customConfig) {
+    return defaultConfig;
+  }
+
+  const mergedHeaders = {
+    ...defaultConfig.headers,
+    ...customConfig.headers,
+  };
+
+  return {
+    ...defaultConfig,
+    ...customConfig,
+    headers: mergedHeaders,
+  };
+}
+
 export const fetchApi = async <T> (url: string, init?: RequestInit, pickHeaders?: string[]) => {
   try {
-    const rawResponse = await fetch(url, init)
+    const requestInitWithDefaults = mergeRequestConfig(defaultRequestConfig, init)
+    const rawResponse = await fetch(url, requestInitWithDefaults)
     if (!rawResponse.ok) {
       const result = new ApiResponse<T>({
         data: null,
@@ -18,7 +43,14 @@ export const fetchApi = async <T> (url: string, init?: RequestInit, pickHeaders?
       headers[h] = rawResponse.headers.get(h)
     })
 
-    const data = await rawResponse.json() as T
+    let data = null
+    try {
+      data = await rawResponse.json() as T
+    }
+    catch {
+      data = null
+    }
+
     const result = new ApiResponse<T>({
       data: data,
       headers: headers,

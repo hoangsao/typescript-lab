@@ -1,5 +1,5 @@
-import { fetchApi } from "./ApiCommon"
-import { ApiResponse } from "./ApiResponse"
+import { fetchApi } from "../../api/ApiCommon"
+import { ApiResponse } from "../../api/ApiResponse"
 import { Photo } from "./Photo"
 
 const photoUrl = 'http://localhost:5101/photos'

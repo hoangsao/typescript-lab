@@ -1,0 +1,26 @@
+.main-layout-container {
+  .header-container {
+    display: flex;
+    align-items: center;
+
+    .left-nav {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .right-nav {
+      flex: 1;
+      min-width: 0;
+      justify-content: right;
+
+      .user-image {
+        height: 45px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .content-container {
+    padding: 0 20px;
+  }
+}

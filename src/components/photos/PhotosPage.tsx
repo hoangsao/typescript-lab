@@ -1,7 +1,7 @@
 import { Card, Col, Row, Spin } from "antd"
 import { useEffect, useState } from "react"
-import { Photo } from "../api/Photo"
-import { PhotoApi } from "../api/PhotoApi"
+import { Photo } from "./Photo"
+import { PhotoApi } from "./PhotoApi"
 
 import './PhotosPage.scss'
 

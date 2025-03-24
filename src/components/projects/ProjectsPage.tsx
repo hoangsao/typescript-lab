@@ -88,7 +88,7 @@ function ProjectsPage () {
             </Col>
           ))}
         </Row>
-        <Pagination align="end" defaultPageSize={8} current={currentPage} onChange={onChangeProjectPaging} total={totalCount} />
+        <Pagination className='projects-pagination' style={{ marginTop: 16 }} align="end" defaultPageSize={8} current={currentPage} onChange={onChangeProjectPaging} total={totalCount} />
       </Spin>
     </div>
   );
