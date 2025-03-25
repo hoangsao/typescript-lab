@@ -26,9 +26,12 @@ function App () {
   const { isLoggedIn, login, logout } = useAuthStore()
 
   const verifyLogin = useCallback(async () => {
-    const response = await AuthApi.me();
+    const response = await AuthApi.check();
     if (response.ok && response.data) {
-      login(response.data)
+      const userResponse = await AuthApi.me();
+      if (userResponse.ok && userResponse.data) {
+        login(userResponse.data)
+      }
     }
     else {
       if (isLoggedIn) {

@@ -11,8 +11,7 @@ export const AuthApi = {
       method: 'POST',
       body: JSON.stringify({
         username,
-        password,
-        expiresInMins: 90, // optional, defaults to 60
+        password
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +36,6 @@ export const AuthApi = {
       method: 'POST',
       body: JSON.stringify({
         // refreshToken: 'refreshToken', // Optional, if not provided, the server will use the cookie
-        expiresInMins: 90, // optional, defaults to 60
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -47,12 +45,22 @@ export const AuthApi = {
 
     return response;
   },
+
   logout: async (): Promise<ApiResponse<null>> => {
     const response = await fetchApi<null>(`${authApiUrl}/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include' // Include cookies (e.g., accessToken) in the request
+    });
+
+    return response;
+  },
+
+  check: async (): Promise<ApiResponse<AuthToken>> => {
+    const response = await fetchApi<AuthToken>(`${authApiUrl}/check`, {
+      method: 'POST',
       credentials: 'include' // Include cookies (e.g., accessToken) in the request
     });
 

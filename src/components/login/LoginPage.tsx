@@ -37,7 +37,7 @@ const LoginPage = () => {
         type: 'success',
         content: 'Login successful',
       })
-      navigate(routePaths.home, { replace: true, state: { isAuthorized: true } })
+      navigate(routePaths.home, { replace: true, state: { isLogedIn: true } })
     }
     else {
       messageApi.open({

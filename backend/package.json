@@ -1,0 +1,22 @@
+{
+  "name": "mock-backend-api",
+  "version": "0.0.0",
+  "description": "Mock backend api using json-server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "cookie-parser": "^1.4.7",
+    "json-server": "^0.17.4",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": "v16.x"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node"
+  ]
+}
